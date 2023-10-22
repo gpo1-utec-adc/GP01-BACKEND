@@ -42,7 +42,7 @@ jobs:
       run: |
         aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC --region us-east-1
         ls -la /home/runner/
-        ifconfig
+        sudo find / -name EKS-Cluster-Grupo1-UTEC |grep eksctl
     
     - name: Deploy to EKS
       run: |
