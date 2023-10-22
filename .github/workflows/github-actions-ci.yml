@@ -41,8 +41,7 @@ jobs:
     - name: Update kube config
       run: |
         aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC --region us-east-1
-        ls -la /home/runner/
-        sudo find / -name EKS-Cluster-Grupo1-UTEC |grep eksctl
+        ls -la /home/runner/.kube/
     
     - name: Deploy to EKS
       run: |
