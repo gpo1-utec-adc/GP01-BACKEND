@@ -40,17 +40,11 @@ jobs:
 
     - name: Update kube config
       run: |
-        pwd
-        mkdir ~/.kube
-        ls ~/.kube
-        cp /home/cloudshell-user/.kube/config ~/.kube/
         aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC
-        kubectl get nodes
-        kubectl get service
+        ls -la /home/runner/
+        hostname
     
     - name: Deploy to EKS
       run: |
         sudo kubectl apply -f deployment.yaml
         sudo kubectl apply -f service.yaml
-        kubectl get service
-        kubectl get pods
