@@ -22,3 +22,4 @@ Informacion de nuestro nodo
   Hostname:     ip-10-0-18-242.ec2.internal
   ExternalDNS:  ec2-44-204-195-223.compute-1.amazonaws.com
 Capacity:
+ponemos la SG de la EC2 del Cluster
