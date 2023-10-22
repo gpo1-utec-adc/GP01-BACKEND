@@ -40,7 +40,9 @@ jobs:
 
     - name: Update kube config
       run: |
+        pwd
         mkdir ~/.kube
+        ls ~/.kube
         cp /home/cloudshell-user/.kube/config ~/.kube/
         aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC
         kubectl get nodes
