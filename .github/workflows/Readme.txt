@@ -13,9 +13,12 @@ install telnet en cluester eks
 sudo yum install telnet
 Para solucionar este mensaje "The connection to the server localhost:8080 was refused - did you specify the right host or port?
 	 " en el eks aplicar el sgte comando
-cp ~/.kube/eksctl/clusters/EKS-Cluster-Grupo1-UTEC ~/.kube/config
-
-
-    - name: Update kube config
-      run: aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC
-    
+cp ~/.kube/eksctl/clusters/EKS-Cluster-Grupo1-UTEC ~/.kube/config (no aplica para nuestro caso)
+Informacion de nuestro nodo
+ Addresses:
+  InternalIP:   10.0.18.242
+  ExternalIP:   44.204.195.223
+  InternalDNS:  ip-10-0-18-242.ec2.internal
+  Hostname:     ip-10-0-18-242.ec2.internal
+  ExternalDNS:  ec2-44-204-195-223.compute-1.amazonaws.com
+Capacity:
