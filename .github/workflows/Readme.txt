@@ -48,7 +48,7 @@ current-context: EKS-Cluster-Grupo1-UTEC
       username: user-grupo1-utec
 
       RUN yum install -y java-1.8.0-openjdk
-      CMD java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dcom.sun.management.jmxremote -noverify ${JAVA_OPTS} -java ConciliacionApplication.java
+      CMD java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dcom.sun.management.jmxremote -noverify ${JAVA_OPTS} -javac ConciliacionApplication.java
 
 
 

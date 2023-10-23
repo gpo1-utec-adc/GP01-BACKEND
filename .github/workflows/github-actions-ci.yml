@@ -45,5 +45,6 @@ jobs:
     
     - name: Deploying to EKS
       run: |
+        java -version
         kubectl apply -f deployment.yaml
         kubectl apply -f service.yaml

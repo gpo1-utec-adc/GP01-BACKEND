@@ -1,7 +1,5 @@
 
 FROM openjdk:8-jdk-alpine
-RUN java -version
 COPY ./ ./
 EXPOSE 8080
-RUN javac ConciliacionApplication.java
-CMD ["java", "Main"]
+CMD java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dcom.sun.management.jmxremote -noverify ${JAVA_OPTS} -javac ConciliacionApplication.java
