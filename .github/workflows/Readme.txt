@@ -34,24 +34,18 @@ nodeconci
 clusconci
 arn:aws:iam::634178970039:role/eks-rol-grupo1-utec
 
-arn:aws:iam::634178970039:user/user-grupo1-utec
-arn:aws:iam::634178970039:role/eks-rol-node-grupo1-utec
-contexts:
-- context:
-    cluster: arn:aws:eks:us-east-1:634178970039:cluster/eks-grupo1-utec
-    user: arn:aws:eks:us-east-1:634178970039:cluster/eks-grupo1-utec
-  name: eks-grupo1-utec
-- context:
-    cluster: arn:aws:eks:us-east-1:634178970039:cluster/grupo1-eks
-    user: arn:aws:eks:us-east-1:634178970039:cluster/grupo1-eks
-  name: grupo1-eks
-- context:
-    cluster: arn:aws:eks:us-east-1:634178970039:cluster/EKS-Cluster-Grupo1-UTEC
-    user: arn:aws:eks:us-east-1:634178970039:cluster/EKS-Cluster-Grupo1-UTEC
-  name: EKS-Cluster-Grupo1-UTEC
+
 current-context: EKS-Cluster-Grupo1-UTEC
 
  ssh -i "id_rsa" root@i-08e71ea76d80edd9a.compute-1.amazonaws.com
+
+ kubectl edit -n kube-system configmap/aws-auth
+
+   mapUsers: |
+    - groups:
+          - system:masters
+      userarn: arn:aws:iam::634178970039:user/user-grupo1-utec
+      username: user-grupo1-utec
 
 
 
