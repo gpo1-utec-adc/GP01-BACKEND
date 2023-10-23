@@ -30,6 +30,8 @@ user:    gpo1-utec-adc
 clave:   Gr4p01Ut3c
 export KUBECONFIG=$KUBECONFIG:~/.kube/config
 EKS-Node-Grupo1-Utec
+nodeconci
+clusconci
 arn:aws:iam::634178970039:role/eks-rol-grupo1-utec
 
 arn:aws:iam::634178970039:user/user-grupo1-utec
