@@ -43,7 +43,7 @@ jobs:
         aws eks update-kubeconfig --name clusconci --alias clusconci --region us-east-1
         kubectl get svc
     
-    - name: Deploy to EKS
+    - name: Deploying to EKS
       run: |
         kubectl apply -f deployment.yaml
         kubectl apply -f service.yaml
