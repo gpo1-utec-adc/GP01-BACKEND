@@ -23,3 +23,9 @@ Informacion de nuestro nodo
   ExternalDNS:  ec2-44-204-195-223.compute-1.amazonaws.com
 Capacity:
 ponemos la SG de la EC2 del Cluster
+Creamos un ssh credential adicional al mismo Usuario
+AWS_ACCESS_KEY_ID= AKIAZHKADEG3WJXE65D7
+AWS_SECRET_ACCESS_KEY= 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
+user:    gpo1-utec-adc
+clave:   Gr4p01Ut3c
+export KUBECONFIG=$KUBECONFIG:~/.kube/config
