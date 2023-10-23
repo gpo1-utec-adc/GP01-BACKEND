@@ -38,11 +38,18 @@ jobs:
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+  
     - name: Update kube config
       run: |
-        sudo aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC --region us-east-1
-        sudo export KUBECONFIG=$KUBECONFIG:~/.kube/config
-        sudo kubectl get svc
+        aws eks update-kubeconfig --name EKS-Cluster-Grupo1-UTEC --alias EKS-Cluster-Grupo1-UTEC --region us-east-1
+        export KUBECONFIG=$KUBECONFIG:~/.kube/config
+        kubectl get svc
     
     - name: Deploy to EKS
       run: |
