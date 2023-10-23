@@ -49,6 +49,8 @@ contexts:
   name: EKS-Cluster-Grupo1-UTEC
 current-context: EKS-Cluster-Grupo1-UTEC
 
+ ssh -i "id_rsa" root@i-08e71ea76d80edd9a.compute-1.amazonaws.com
+
 
 
 
