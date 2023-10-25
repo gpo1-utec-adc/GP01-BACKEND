@@ -1,5 +1,5 @@
 
-FROM openjdk:8-jdk-alpine
-RUN COPY ./ ./
-RUN yum install -y java-1.8.0-openjdk
-CMD java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dcom.sun.management.jmxremote -noverify ${JAVA_OPTS} -javac ConciliacionApplication.java
+FROM openjdk:jdk8-apm-alpine
+ADD *.jar app.jar
+EXPOSE 8080
+ENTRYPOINT [ "sh", "-c", "java -Xss1024k -Xms256m -Xmx1024m -Djava.awt.headless=true -Duser.timezone=GMT-5 -XX:+UseStringDeduplication -XX:+UseCompressedOops -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+UseContainerSupport -XX:+UseParallelOldGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:MaxMetaspaceSize=1024m -XX:+ExitOnOutOfMemoryError -XshowSettings:all -jar /app.jar" ]
