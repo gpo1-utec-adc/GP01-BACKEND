@@ -244,5 +244,13 @@ rol-githubaction-policy-grupo1
   174  telnet 172.20.186.249 80
   175  df -h
   176  history
-
+====================================
+   - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+          java-version: '8'
+          distribution: 'adopt'
+   
+      - name: Build with Maven
+        run:  mvn -B package --file pom.xml
 
