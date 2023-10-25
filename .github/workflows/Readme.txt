@@ -254,3 +254,4 @@ rol-githubaction-policy-grupo1
       - name: Build with Maven
         run:  mvn -B package --file pom.xml
 
+java:openjdk-8-jdk-alpine
