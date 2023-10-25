@@ -1,5 +1,7 @@
 
 FROM openjdk:8-jdk-alpine
-COPY ./ ./
-EXPOSE 8080
-CMD java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dcom.sun.management.jmxremote -noverify ${JAVA_OPTS} -javac ConciliacionApplication.java
+ADD /target/conciliacion.jar conciliacion.jar
+
+ENV JAVA_OPTS="-Xmx256m -Xms256m -XX:MetaspaceSize=48m -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar conciliacion.jar" ]

@@ -11,6 +11,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+          java-version: '8'
+          distribution: 'adopt'
+
+      - name: Build with Maven
+        run:  mvn -B package --file pom.xml
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v3
@@ -40,7 +48,7 @@ jobs:
   
     - name: Update kube config
       run: |
-        aws eks update-kubeconfig --name clusconci --alias clusconci --region us-east-1
+        aws eks update-kubeconfig --name EKS-Cluster-Grupo1-Utec --alias EKS-Cluster-Grupo1-Utec --region us-east-1
         kubectl get svc
     
     - name: Deploying to EKS
