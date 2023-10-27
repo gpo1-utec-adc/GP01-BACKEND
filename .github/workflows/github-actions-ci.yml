@@ -40,7 +40,7 @@ jobs:
   
     - name: Update kube config
       run: |
-        aws eks update-kubeconfig --name EKS-Cluster-Grupo1-Utec --alias EKS-Cluster-Grupo1-Utec --region us-east-1
+        aws eks update-kubeconfig --name EKS-Cluster-Grupo1-Utec --alias EKS-Cluster-Grupo1-Utec --region us-east-2
         kubectl get svc
     
     - name: Deploying to EKS

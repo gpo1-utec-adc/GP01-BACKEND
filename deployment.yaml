@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: conciliacion
-  namespace: conciliacion-v2
+  namespace: conciliacion-v1
   labels:
     app: conciliacion
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: conciliacion
-          image: 634178970039.dkr.ecr.us-east-1.amazonaws.com/grupo1:1.1
+          image: 243616138453.dkr.ecr.us-east-2.amazonaws.com/grupo1:1.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

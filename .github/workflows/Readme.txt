@@ -44,7 +44,7 @@ current-context: EKS-Cluster-Grupo1-UTEC
    mapUsers: |
     - groups:
           - system:masters
-      userarn: arn:aws:iam::634178970039:user/user-grupo1-utec
+      userarn: arn:aws:iam::243616138453:user/user-grupo1-utec
       username: user-grupo1-utec
 
       RUN yum install -y java-1.8.0-openjdk
