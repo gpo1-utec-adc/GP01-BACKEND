@@ -1,13 +1,12 @@
 package utec.arquitectura.conciliacion.service.impl;
 
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utec.arquitectura.conciliacion.dominio.ConciliacionDominio;
 import utec.arquitectura.conciliacion.repository.ConciliacionRepository;
 import utec.arquitectura.conciliacion.service.ConciliacionService;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -17,14 +16,14 @@ public class ConciliacionServiceImpl implements ConciliacionService {
     private ConciliacionRepository conciliacionRepository;
 
     @Override
-    public List<ConciliacionDominio> obtenerConciliaciones(Integer autorizacion, Integer codigoComercio, String fechaProceso)
+    public List<ConciliacionDominio> obtenerConciliaciones(String autorizacion, String codigoComercio, Date fechaProceso)
     {
          if(autorizacion== null && codigoComercio != null) {
-             return conciliacionRepository.findByCodigoComercioAndFechaProceso(codigoComercio, fechaProceso);
+             return conciliacionRepository.findByCodigocomercioAndFechaproceso(codigoComercio, fechaProceso);
          } else if (autorizacion != null && codigoComercio == null) {
-                return conciliacionRepository.findByAutorizacionAndFechaProceso(autorizacion, fechaProceso);
+                return conciliacionRepository.findByAutorizacionAndFechaproceso(autorizacion, fechaProceso);
          }else {
-             return conciliacionRepository.findByCodigoComercioAndAutorizacionAndFechaProceso(codigoComercio,autorizacion,fechaProceso);
+             return conciliacionRepository.findByCodigocomercioAndAutorizacionAndFechaproceso(codigoComercio,autorizacion,fechaProceso);
          }
         /** if(autorizacion== null && codigoComercio != null)
          {

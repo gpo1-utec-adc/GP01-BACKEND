@@ -11,7 +11,7 @@ import utec.arquitectura.conciliacion.dominio.ConciliacionDominio;
 import utec.arquitectura.conciliacion.repository.ConciliacionRepository;
 import utec.arquitectura.conciliacion.service.ConciliacionService;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -24,9 +24,9 @@ public class ConciliacionController {
 
     @ApiOperation(value = "", notes = "")
     @GetMapping("/trxs")
-    public List<ConciliacionDominio> getAllTrxs(@RequestParam(required = false) Integer autorizacion,
-                                                @RequestParam(required = false) Integer codigoComercio,
-                                                @RequestParam String fechaProceso)
+    public List<ConciliacionDominio> getAllTrxs(@RequestParam(required = false) String autorizacion,
+                                                @RequestParam(required = false) String codigoComercio,
+                                                @RequestParam Date fechaProceso)
     {
         return conciliacionService.obtenerConciliaciones(autorizacion,codigoComercio, fechaProceso);
     }
