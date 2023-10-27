@@ -1,22 +1,21 @@
 package utec.arquitectura.conciliacion.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import utec.arquitectura.conciliacion.dominio.ConciliacionDominio;
 
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
-public interface ConciliacionRepository extends MongoRepository<ConciliacionDominio, String> {
+public interface ConciliacionRepository extends JpaRepository<ConciliacionDominio, String> {
 
 
-    List<ConciliacionDominio> findByCodigoComercioAndFechaProceso(Integer codigoComercio,String fechaProceso);
-    List<ConciliacionDominio> findByAutorizacionAndFechaProceso(Integer autorizacion,String fechaProceso);
+    List<ConciliacionDominio> findByCodigocomercioAndFechaproceso(String codigoComercio, Date fechaProceso);
+    List<ConciliacionDominio> findByAutorizacionAndFechaproceso(String autorizacion,Date fechaProceso);
 
-    List<ConciliacionDominio> findByCodigoComercioAndAutorizacionAndFechaProceso(Integer codigoComercio , Integer autorizacion, String fechaProceso);
+    List<ConciliacionDominio> findByCodigocomercioAndAutorizacionAndFechaproceso(String codigoComercio , String autorizacion, Date fechaProceso);
 
   /*  @Transactional
     @Query("{'codigoComercio': :#{#codigoComercio}}, 'fechaProceso': {$gte: :#{#fechaProcesoInicio}}, $lte: :#{#fechaProcesoFin}}}")

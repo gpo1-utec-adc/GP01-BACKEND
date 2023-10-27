@@ -11,7 +11,8 @@ spring:
     enabled: true
   jpa:
     show-sql: true
-  data:
-    mongodb:
-      uri: mongodb+srv://dbutec:Aa1234@utecpractice.0ptuhjq.mongodb.net/
-      database: expressnet_servicios
+  datasource:
+    url: jdbc:postgresql://dbprd01.ctpsywmohtj4.us-east-2.rds.amazonaws.com:5432/postgres
+    username: postgre
+    password: Muylargo1
+    driver-class-name: org.postgresql.Driver
