@@ -37,7 +37,7 @@ jobs:
       run: |
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-  
+        
     - name: Update kube config
       run: |
         aws eks update-kubeconfig --name EKS-Cluster-Grupo1-Utec --alias EKS-Cluster-Grupo1-Utec --region us-east-2
