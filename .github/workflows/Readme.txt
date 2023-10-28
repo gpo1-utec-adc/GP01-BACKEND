@@ -257,6 +257,5 @@ rol-githubaction-policy-grupo1
 java:openjdk-8-jdk-alpine
 
 URL de la BD dbprd01.ctpsywmohtj4.us-east-2.rds.amazonaws.com:5432
-243616138453.dkr.ecr.us-east-2.amazonaws.com/grupo1@sha256:2c773f16c5d5ae8f23d5428b4051ade63c0ce49349c43b839395e05a75a5ecfb
 docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
 docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
