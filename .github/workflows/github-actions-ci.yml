@@ -35,9 +35,9 @@ jobs:
         REPOSITORY: grupo1
         IMAGE_TAG: 1.1
       run: |
-        docker build -t 243616138453.dkr.ecr.us-east-2.amazonaws.com/grupo1@sha256:2c773f16c5d5ae8f23d5428b4051ade63c0ce49349c43b839395e05a75a5ecfb .
-        docker push 243616138453.dkr.ecr.us-east-2.amazonaws.com/grupo1@sha256:2c773f16c5d5ae8f23d5428b4051ade63c0ce49349c43b839395e05a75a5ecfb
-  
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+        
     - name: Update kube config
       run: |
         aws eks update-kubeconfig --name EKS-Cluster-Grupo1-Utec --alias EKS-Cluster-Grupo1-Utec --region us-east-2
