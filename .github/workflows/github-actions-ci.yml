@@ -55,5 +55,8 @@ jobs:
     - name: Deploying to EKS
       run: |
         java -version
+        podidconci=$(kubectl get pod  -n conciliacion-v1 |grep conciliacion-|cut -c 1-29)
+        echo $podidconci
+        kubectl delete pod $podidconci -n conciliacion-v1
         kubectl apply -f deployment.yaml
         kubectl apply -f service.yaml
