@@ -1,37 +1,32 @@
 package utec.arquitectura.conciliacion.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import utec.arquitectura.conciliacion.dominio.ConciliacionDominio;
 
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface ConciliacionRepository extends JpaRepository<ConciliacionDominio, String> {
 
+    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucion(
+            String estado, Date fechaproceso, String estadodevolucion);
+    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucionAndCodigocomercio
+            (String estado, Date fechaproceso, String estadodevolucion, String codigocomercio);
 
-    List<ConciliacionDominio> findByCodigocomercioAndFechaproceso(String codigoComercio, Date fechaProceso);
-    List<ConciliacionDominio> findByAutorizacionAndFechaproceso(String autorizacion,Date fechaProceso);
+    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacion
+            (String estado, Date fechaproceso, String estadodevolucion, String autorizacion);
 
-    List<ConciliacionDominio> findByCodigocomercioAndAutorizacionAndFechaproceso(String codigoComercio , String autorizacion, Date fechaProceso);
+    /**@Query( value = "SELECT l from ConciliacionDominio  l where l.autorizacion = :autorizacion and l.estado = :estado and " +
+            " l.codigocomercio= :codigocomercio and l.estadodevolucion = :estadodevolucion ", nativeQuery = false)
+    List<ConciliacionDominio> getAll
+            (@Param("estado") String estado,@Param("estadodevolucion") String estadodevolucion,@Param("autorizacion") String autorizacion,@Param("codigocomercio") String codigocomercio);**/
 
-  /*  @Transactional
-    @Query("{'codigoComercio': :#{#codigoComercio}}, 'fechaProceso': {$gte: :#{#fechaProcesoInicio}}, $lte: :#{#fechaProcesoFin}}}")
-    List<ConciliacionDominio> findByCodigoComercioAndFechaProcesoInicioAndFechaProcesoFin(@Param("codigoComercio") String codigoComercio,
-                                                                                          @Param("fechaProcesoInicio") String fechaProcesoInicio,
-                                                                                          @Param("fechaProcesoFin")  String fechaProcesoFin);
-
-    List<ConciliacionDominio> findByAutorizacionAndFechaProcesoInicioAndFechaProcesoFin(@Param("autorizacion") String autorizacion,
-                                                                                        @Param("fechaProcesoInicio") Date fechaProcesoInicio,
-                                                                                        @Param("fechaProcesoFin")  Date fechaProcesoFin);
-
-    List<ConciliacionDominio> findByCodigoComercioAndAutorizacionAndFechaProcesoInicioAndFechaProcesoFin(@Param("codigoComercio") String codigoComercio,
-                                                                                                         @Param("autorizacion") String autorizacion,
-                                                                                                         @Param("fechaProcesoInicio") Date fechaProcesoInicio,
-                                                                                                         @Param("fechaProcesoFin")  Date fechaProcesoFin);
-
-    List<ConciliacionDominio> findByFechaProcesoBetween(Date startDate,Date endDate);*/
+    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacionAndCodigocomercio
+            (String estado, Date fechaproceso, String estadodevolucion, String autorizacion, String codigocomercio);
 
 }

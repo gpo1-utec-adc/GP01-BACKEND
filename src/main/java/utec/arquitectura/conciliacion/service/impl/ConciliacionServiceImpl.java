@@ -3,10 +3,12 @@ package utec.arquitectura.conciliacion.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utec.arquitectura.conciliacion.dominio.ConciliacionDominio;
+import utec.arquitectura.conciliacion.model.Request;
 import utec.arquitectura.conciliacion.repository.ConciliacionRepository;
 import utec.arquitectura.conciliacion.service.ConciliacionService;
+import utec.arquitectura.conciliacion.util.ConvertFecha;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,25 +18,26 @@ public class ConciliacionServiceImpl implements ConciliacionService {
     private ConciliacionRepository conciliacionRepository;
 
     @Override
-    public List<ConciliacionDominio> obtenerConciliaciones(String autorizacion, String codigoComercio, Date fechaProceso)
+    public List<ConciliacionDominio> obtenerConciliaciones(Request request)
     {
-         if(autorizacion== null && codigoComercio != null) {
-             return conciliacionRepository.findByCodigocomercioAndFechaproceso(codigoComercio, fechaProceso);
-         } else if (autorizacion != null && codigoComercio == null) {
-                return conciliacionRepository.findByAutorizacionAndFechaproceso(autorizacion, fechaProceso);
-         }else {
-             return conciliacionRepository.findByCodigocomercioAndAutorizacionAndFechaproceso(codigoComercio,autorizacion,fechaProceso);
-         }
-        /** if(autorizacion== null && codigoComercio != null)
+        Date fecha = ConvertFecha.convertFechaToDate(request.getFechaProceso());
+        if(request.getAutorizacion()== null && request.getCodigoComercio() == null)
+        {
+            return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucion(
+                    request.getEstado(), fecha, request.getEstadoDevolucion());
+        }
+        else if(request.getAutorizacion()== null && request.getCodigoComercio() != null)
          {
-             return conciliacionRepository.findByCodigoComercioAndFechaProcesoInicioAndFechaProcesoFin(codigoComercio, fechaProcesoInicio, fechaProcesoFin);
-        } else if (autorizacion != null && codigoComercio == null) {
-             return conciliacionRepository.findByAutorizacionAndFechaProcesoInicioAndFechaProcesoFin(autorizacion, fechaProcesoInicio, fechaProcesoFin);
-         }else if (autorizacion != null && codigoComercio != null) {
-             return conciliacionRepository.findByCodigoComercioAndAutorizacionAndFechaProcesoInicioAndFechaProcesoFin(codigoComercio, autorizacion, fechaProcesoInicio, fechaProcesoFin);
-         }else {
-             return conciliacionRepository.findByFechaProcesoBetween(fechaProcesoInicio, fechaProcesoFin);
-         }**/
+             return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucionAndCodigocomercio(
+                     request.getEstado(), fecha, request.getEstadoDevolucion(), request.getCodigoComercio());
+        } else if (request.getAutorizacion() != null && request.getCodigoComercio()  == null) {
+             return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacion(
+                     request.getEstado(), fecha, request.getEstadoDevolucion(), request.getAutorizacion());
+         }else   {
+             return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacionAndCodigocomercio(
+                     request.getEstado(), fecha, request.getEstadoDevolucion(), request.getAutorizacion(),
+                     request.getCodigoComercio());
+         }
 
     }
 

@@ -1,19 +1,94 @@
 package utec.arquitectura.conciliacion.dominio;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
-@Data
 @Table(name="transaction", schema = "conciliacion")
 public class ConciliacionDominio {
 
 
+    @Id
+    private int idtransaction;
+
+    private String codigocomercio;
+
+    private int tipooperacion;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date fechaoperacion;
+
+
+    private String horaoperacion;
+
+    private String numeroreferencia;
+
+
+    private int emisor;
+
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date fechaproceso;
+
+
+    private double importebruto;
+
+
+    private double comemisor;
+
+
+    private double commerchant;
+
+
+    private double comtotal;
+
+
+    private double igv;
+
+
+    private double importeneto;
+
+
+    private String codigomon;
+
+    private String fechaabono;
+
+
+    private String tarjetamask;
+
+    private String ruc;
+
+
+    private String autorizacion;
+
+
+    private int codvisanet;
+
+    private String estado;
+
+    private double montocontracargo;
+
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date fechacontracargo;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date fecharetencion;
+
+
+    private double montodevolucion;
+
+    private String montoretencion;
+
+    private String estadodevolucion;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date fechadevolucion;
 
     public String getCodigocomercio() {
         return codigocomercio;
@@ -127,11 +202,11 @@ public class ConciliacionDominio {
         this.codigomon = codigomon;
     }
 
-    public Date getFechaabono() {
+    public String getFechaabono() {
         return fechaabono;
     }
 
-    public void setFechaabono(Date fechaabono) {
+    public void setFechaabono(String fechaabono) {
         this.fechaabono = fechaabono;
     }
 
@@ -163,7 +238,7 @@ public class ConciliacionDominio {
         return codvisanet;
     }
 
-    public void setCodVisanet(int codvisanet) {
+    public void setCodvisanet(int codvisanet) {
         this.codvisanet = codvisanet;
     }
 
@@ -175,12 +250,30 @@ public class ConciliacionDominio {
         this.estado = estado;
     }
 
-    public String getTipodevolucion() {
-        return tipodevolucion;
+    public double getMontocontracargo() {
+        return montocontracargo;
     }
 
-    public void setTipodevolucion(String tipodevolucion) {
-        this.tipodevolucion = tipodevolucion;
+    public void setMontocontracargo(double montocontracargo) {
+        this.montocontracargo = montocontracargo;
+    }
+
+    @Nullable
+    public Date getFechacontracargo() {
+        return fechacontracargo;
+    }
+
+    public void setFechacontracargo(@Nullable Date fechacontracargo) {
+        this.fechacontracargo = fechacontracargo;
+    }
+
+    @Nullable
+    public Date getFecharetencion() {
+        return fecharetencion;
+    }
+
+    public void setFecharetencion(@Nullable Date fecharetencion) {
+        this.fecharetencion = fecharetencion;
     }
 
     public double getMontodevolucion() {
@@ -191,126 +284,35 @@ public class ConciliacionDominio {
         this.montodevolucion = montodevolucion;
     }
 
-    public String getContracargo() {
-        return contracargo;
+    public String getMontoretencion() {
+        return montoretencion;
     }
 
-    public void setContracargo(String contracargo) {
-        this.contracargo = contracargo;
+    public void setMontoretencion(String montoretencion) {
+        this.montoretencion = montoretencion;
     }
 
-    public Date getFechacontracargo() {
-        return fechacontracargo;
+    public String getEstadodevolucion() {
+        return estadodevolucion;
     }
 
-    public void setFechacontracargo(Date fechacontracargo) {
-        this.fechacontracargo = fechacontracargo;
+    public void setEstadodevolucion(String estadodevolucion) {
+        this.estadodevolucion = estadodevolucion;
     }
 
-    public Date getFecharetencion() {
-        return fecharetencion;
+    public Date getFechadevolucion() {
+        return fechadevolucion;
     }
 
-    public void setFecharetencion(Date fecharetencion) {
-        this.fecharetencion = fecharetencion;
+    public void setFechadevolucion(Date fechadevolucion) {
+        this.fechadevolucion = fechadevolucion;
     }
 
-    public String getMontodevoluciontota() {
-        return montodevoluciontota;
-    }
-
-    public void setMontodevoluciontota(String montodevoluciontota) {
-        this.montodevoluciontota = montodevoluciontota;
-    }
-
-    public String getRetencion() {
-        return retencion;
-    }
-
-    public void setRetencion(String retencion) {
-        this.retencion = retencion;
-    }
-
-    public Long getIdtransaction() {
+    public int getIdtransaction() {
         return idtransaction;
     }
 
-    public void setIdtransaction(Long idtransaction) {
+    public void setIdtransaction(int idtransaction) {
         this.idtransaction = idtransaction;
     }
-
-    @Id
-    private Long idtransaction;
-
-    private String codigocomercio;
-
-    private int tipooperacion;
-
-    private Date fechaoperacion;
-
-
-    private String horaoperacion;
-
-    private String numeroreferencia;
-
-
-    private int emisor;
-
-
-    private Date fechaproceso;
-
-
-    private double importebruto;
-
-
-    private double comemisor;
-
-
-    private double commerchant;
-
-
-    private double comtotal;
-
-
-    private double igv;
-
-
-    private double importeneto;
-
-
-    private String codigomon;
-
-
-    private Date fechaabono;
-
-
-    private String tarjetamask;
-
-    private String ruc;
-
-
-    private String autorizacion;
-
-
-    private int codvisanet;
-
-    private String estado;
-
-    private String tipodevolucion;
-
-    @Nullable
-    private double montodevolucion;
-
-    private String contracargo;
-
-    @Nullable
-    private Date fechacontracargo;
-
-    @Nullable
-    private Date fecharetencion;
-
-    private String montodevoluciontota;
-
-    private String retencion;
-
 }
