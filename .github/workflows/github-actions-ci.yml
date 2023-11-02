@@ -11,6 +11,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Configurar JDK 8
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '8'
+
+    - name: Build con Maven
+      run: mvn -B package --file pom.xml
  
     - name: Install kubectl
       uses: azure/setup-kubectl@v3
@@ -46,5 +55,8 @@ jobs:
     - name: Deploying to EKS
       run: |
         java -version
+        podidconci=$(kubectl get pod  -n conciliacion-v1 |grep conciliacion-|cut -c 1-29)
+        echo $podidconci
+        kubectl delete pod $podidconci -n conciliacion-v1
         kubectl apply -f deployment.yaml
         kubectl apply -f service.yaml
