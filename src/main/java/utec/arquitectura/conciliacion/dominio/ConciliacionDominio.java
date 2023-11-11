@@ -3,6 +3,7 @@ package utec.arquitectura.conciliacion.dominio;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.lang.Nullable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,8 +15,7 @@ import java.util.Date;
 public class ConciliacionDominio {
 
 
-    @Id
-    private int idtransaction;
+
 
     private String codigocomercio;
 
@@ -24,9 +24,9 @@ public class ConciliacionDominio {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date fechaoperacion;
 
-
     private String horaoperacion;
 
+    @Id
     private String numeroreferencia;
 
 
@@ -308,11 +308,4 @@ public class ConciliacionDominio {
         this.fechadevolucion = fechadevolucion;
     }
 
-    public int getIdtransaction() {
-        return idtransaction;
-    }
-
-    public void setIdtransaction(int idtransaction) {
-        this.idtransaction = idtransaction;
-    }
 }

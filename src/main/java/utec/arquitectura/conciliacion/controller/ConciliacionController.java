@@ -18,11 +18,13 @@ public class ConciliacionController {
     @Autowired
     private ConciliacionService conciliacionService;
 
-    @ApiOperation(value = "", notes = "")
-    @PostMapping("/trxs")
-    public List<ConciliacionDominio> getAllTrxs(@RequestBody Request request)
+    @ApiOperation(value = "Lista las Trxs", notes = "")
+    @GetMapping("/trxs")
+    public List<ConciliacionDominio> getAllTrxs(@RequestParam String codigoComercio,@RequestParam String autorizacion,@RequestParam String estado,
+                                                @RequestParam String estadoDevolucion,@RequestParam String fechaProcesoInicio,@RequestParam String fechaProcesoFin
+                                                )
     {
-        return conciliacionService.obtenerConciliaciones(request);
+        return conciliacionService.obtenerConciliaciones(codigoComercio, autorizacion, estado, estadoDevolucion, fechaProcesoInicio, fechaProcesoFin);
     }
 
 }

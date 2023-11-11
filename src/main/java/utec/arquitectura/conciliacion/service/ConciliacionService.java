@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public interface ConciliacionService {
-
-    List<ConciliacionDominio> obtenerConciliaciones(Request request);
+    List<ConciliacionDominio> obtenerConciliaciones(String codigoComercio,String autorizacion,String estado,String estadoDevolucion,String fechaProcesoInicio,String fechaProcesoFin);
 
 }

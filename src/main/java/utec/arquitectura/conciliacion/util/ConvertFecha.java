@@ -13,7 +13,6 @@ public class ConvertFecha {
         Date fechaDate = null;
         try {
             String pattern = "yyyy-MM-dd";
-            SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             fechaDate =  simpleDateFormat.parse(fecha);
         }catch (Exception ex)

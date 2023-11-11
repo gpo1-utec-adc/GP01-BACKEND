@@ -8,6 +8,9 @@ import utec.arquitectura.conciliacion.repository.ConciliacionRepository;
 import utec.arquitectura.conciliacion.service.ConciliacionService;
 import utec.arquitectura.conciliacion.util.ConvertFecha;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -18,25 +21,24 @@ public class ConciliacionServiceImpl implements ConciliacionService {
     private ConciliacionRepository conciliacionRepository;
 
     @Override
-    public List<ConciliacionDominio> obtenerConciliaciones(Request request)
+    public List<ConciliacionDominio> obtenerConciliaciones(String codigoComercio,String autorizacion,String estado,String estadoDevolucion,String fechaProcesoInicio,String fechaProcesoFin)
     {
-        Date fecha = ConvertFecha.convertFechaToDate(request.getFechaProceso());
-        if(request.getAutorizacion()== null && request.getCodigoComercio() == null)
+        if(codigoComercio== "" && autorizacion ==  "")
         {
-            return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucion(
-                    request.getEstado(), fecha, request.getEstadoDevolucion());
+            return conciliacionRepository.findByEstadoAndEstadodevolucionAndFechaprocesoBetween(
+                    estado,estadoDevolucion, fechaProcesoInicio, fechaProcesoFin);
         }
-        else if(request.getAutorizacion()== null && request.getCodigoComercio() != null)
+        else if(autorizacion ==  "" && codigoComercio !=  "")
          {
-             return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucionAndCodigocomercio(
-                     request.getEstado(), fecha, request.getEstadoDevolucion(), request.getCodigoComercio());
-        } else if (request.getAutorizacion() != null && request.getCodigoComercio()  == null) {
-             return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacion(
-                     request.getEstado(), fecha, request.getEstadoDevolucion(), request.getAutorizacion());
+             return conciliacionRepository.findByEstadoAndEstadodevolucionAndCodigocomercioAndFechaproceso(
+                     estado, estadoDevolucion, codigoComercio, fechaProcesoInicio, fechaProcesoFin);
+        } else if (autorizacion != "" && codigoComercio  == "") {
+             return conciliacionRepository.findByEstadoAndEstadodevolucionAndAutorizacion(
+                     estado, estadoDevolucion, autorizacion, fechaProcesoInicio, fechaProcesoFin);
          }else   {
              return conciliacionRepository.findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacionAndCodigocomercio(
-                     request.getEstado(), fecha, request.getEstadoDevolucion(), request.getAutorizacion(),
-                     request.getCodigoComercio());
+                     estado,  estadoDevolucion, autorizacion,codigoComercio,
+                     fechaProcesoInicio, fechaProcesoFin);
          }
 
     }

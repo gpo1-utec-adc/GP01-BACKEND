@@ -13,20 +13,31 @@ import java.util.List;
 @Repository
 public interface ConciliacionRepository extends JpaRepository<ConciliacionDominio, String> {
 
-    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucion(
-            String estado, Date fechaproceso, String estadodevolucion);
-    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucionAndCodigocomercio
-            (String estado, Date fechaproceso, String estadodevolucion, String codigocomercio);
+    @Query(value = "Select c from ConciliacionDominio c where c.estado = :estado and c.estadodevolucion = :estadodevolucion and " +
+            "c.fechaproceso >= to_date(:start, 'YYYY-mm-dd') and c.fechaproceso <= to_date(:end, 'YYYY-mm-dd')")
+    List<ConciliacionDominio> findByEstadoAndEstadodevolucionAndFechaprocesoBetween(
+          @Param("estado") String estado,@Param("estadodevolucion") String estadodevolucion,@Param("start") String start,@Param("end") String end);
 
-    List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacion
-            (String estado, Date fechaproceso, String estadodevolucion, String autorizacion);
+    @Query(value = "Select c from ConciliacionDominio c where c.estado = :estado and c.estadodevolucion = :estadodevolucion and c.codigocomercio=:codigocomercio" +
+            " and c.fechaproceso >= to_date(:start, 'YYYY-mm-dd') and c.fechaproceso <= to_date(:end, 'YYYY-mm-dd')")
+    List<ConciliacionDominio> findByEstadoAndEstadodevolucionAndCodigocomercioAndFechaproceso
+            (@Param("estado") String estado,@Param("estadodevolucion") String estadodevolucion,
+             @Param("codigocomercio") String codigocomercio,
+             @Param("start") String start,@Param("end") String end);
 
-    /**@Query( value = "SELECT l from ConciliacionDominio  l where l.autorizacion = :autorizacion and l.estado = :estado and " +
-            " l.codigocomercio= :codigocomercio and l.estadodevolucion = :estadodevolucion ", nativeQuery = false)
-    List<ConciliacionDominio> getAll
-            (@Param("estado") String estado,@Param("estadodevolucion") String estadodevolucion,@Param("autorizacion") String autorizacion,@Param("codigocomercio") String codigocomercio);**/
+    @Query(value = "Select c from ConciliacionDominio c where c.estado = :estado and c.estadodevolucion = :estadodevolucion and c.autorizacion=:autorizacion" +
+            " and c.fechaproceso >= to_date(:start, 'YYYY-mm-dd') and c.fechaproceso <= to_date(:end, 'YYYY-mm-dd')")
+    List<ConciliacionDominio> findByEstadoAndEstadodevolucionAndAutorizacion
+            (@Param("estado") String estado,@Param("estadodevolucion") String estadodevolucion,
+             @Param("autorizacion") String autorizacion,
+             @Param("start") String start,@Param("end") String end);
 
+    @Query(value = "Select c from ConciliacionDominio c where c.estado = :estado and c.estadodevolucion = :estadodevolucion and c.autorizacion=:autorizacion" +
+            " and c.codigocomercio=:codigocomercio and c.fechaproceso >= to_date(:start, 'YYYY-mm-dd') and c.fechaproceso <= to_date(:end, 'YYYY-mm-dd')")
     List<ConciliacionDominio> findByEstadoAndFechaprocesoAndEstadodevolucionAndAutorizacionAndCodigocomercio
-            (String estado, Date fechaproceso, String estadodevolucion, String autorizacion, String codigocomercio);
+            (@Param("estado") String estado,@Param("estadodevolucion") String estadodevolucion,
+             @Param("autorizacion") String autorizacion,
+             @Param("codigocomercio") String codigocomercio,
+             @Param("start") String start,@Param("end") String end);
 
 }
